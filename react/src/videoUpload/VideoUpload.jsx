@@ -22,7 +22,8 @@ export default function VideoUpload(){
     
     const handleClick = async (e) =>{
         e.preventDefault();
-        await setPost(formData);
+        // await setPost(formData);
+        console.log(formData);
         
     }
     
