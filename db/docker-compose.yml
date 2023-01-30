@@ -1,0 +1,19 @@
+services:
+  db:
+    image: akuiack/3495as1-mysqldb
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    env_file:
+      ./docker.env
+    environment:
+      ENV MYSQL_ROOT_PASSWORD: $ROOTPW
+      ENV MYSQL_ROOT_HOST: '%'
+      ENV MYSQL_DATABASE: $APPDB
+      ENV MYSQL_USER: $DBUSER
+      ENV MYSQL_USER_HOST: '%'
+      ENV MYSQL_USER_PASSWORD: $DBUSERPW
+    ports: 
+      - "33060:3306"
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    

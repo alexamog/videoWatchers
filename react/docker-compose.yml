@@ -4,6 +4,14 @@ services:
     build: .
     ports:
       - "5173:5173"
+    networks:
+      assign1-network:
+        ipv4_address: 10.5.0.6
+
 networks:
   assign1-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
