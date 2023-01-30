@@ -15,7 +15,7 @@ export default function VideoUpload(){
         "videoFile": null
     });
     const setPost = async (data) =>{
-        const res = await axios.post('http://localhost:5000', data)
+        const res = await axios.post('http://10.5.0.7:5000/', data)
         .then(function (response) {
             console.log(response);
           })

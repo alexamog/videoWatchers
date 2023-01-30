@@ -5,4 +5,5 @@ COPY app.py ./
 EXPOSE 8080
 
 RUN pip install flask
+RUN pip install -U flask-cors
 CMD ["flask", "run","--host=0.0.0.0"]
