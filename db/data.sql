@@ -1,0 +1,6 @@
+USE videoapp;
+
+CREATE TABLE IF NOT EXISTS videos (
+    title VARCHAR(255) DEFAULT NULL,
+    videofile VARCHAR(255) DEFAULT NULL,
+);
