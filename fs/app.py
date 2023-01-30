@@ -2,8 +2,9 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST',"GET"])
 def upload_file():
+    print("route hit")
     print(request.json)
     # file = request.json['videoFile']
     # file.save(f"/videos/{request.form['videoName']}")

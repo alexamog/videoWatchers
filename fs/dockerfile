@@ -2,6 +2,7 @@ FROM python:latest
 
 RUN mkdir videos
 COPY app.py ./
+EXPOSE 8080
 
 RUN pip install flask
 CMD ["python", "./app.py"]
