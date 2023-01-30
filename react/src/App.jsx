@@ -1,32 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Router, Outlet, ReactLocation } from "@tanstack/react-location";
+import './App.css';
+import VideoUpload from "./videoUpload/VideoUpload";
+import Homepage from "./homepage/Homepage";
+import Footer from "./footer/Footer";
 
-function App() {
-  const [count, setCount] = useState(0)
+const location = new ReactLocation();
+
+export default function App() {
+  const routes = [
+    {
+      path: "/",
+      element: <Homepage />,
+    },
+    {
+      path: "upload",
+      element: <VideoUpload />,
+    },
+  ];
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <h1>Docker - React</h1>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <Router routes={routes} location={location}>
+          <Outlet />
+        <Footer />
+      </Router>
+    </>
+  );
 }
-
-export default App
