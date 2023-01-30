@@ -1,31 +1,19 @@
 import axios from "axios";
 import mysql from 'mysql';
 import { useState } from "react";
-
+import { useNavigate } from "@tanstack/react-location";
+import { useStore } from "../store";
+import Login from "../login/Login";
 
 
 export default function VideoUpload(){
+    const token = useStore((state)=> state.token);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         "videoName": "untitled",
         "tags": [],
         "videoFile": null
     });
-    const db = mysql.createConnection({
-        host: "localhost",
-        user:"videoapp-user",
-        password: "videouser3495",
-        database: "videoapp"
-    })
-    
-    const insertVideo = () =>{
-        db.query("INSERT INTO videos (title, tags, location) VALUES (?,?,?)", [formData.videoName, formData.tags, "location_here"], (err,result)=>{
-            if(err){
-                console.log(err);
-            }
-            console.log(result);
-        });
-    }
-
     const setPost = (data) =>{
         axios({
             method: "post",
@@ -45,6 +33,11 @@ export default function VideoUpload(){
         console.log(formData);
         
     }
+
+    if(!token){
+        return <Login/>
+      }
+
     
     return(
         <div>
