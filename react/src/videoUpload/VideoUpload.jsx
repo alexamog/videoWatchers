@@ -14,23 +14,22 @@ export default function VideoUpload(){
         "tags": [],
         "videoFile": null
     });
-    const setPost = (data) =>{
-        axios({
-            method: "post",
-            url: "localhost:8080/video",
-            data: {
-                title: data.videoName,
-                video: data.videoFile,
-                tags: data.tags
-            }
-        })
+    const setPost = async (data) =>{
+        const res = await axios.post('http://localhost:3001/db/upload', data)
+        .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
     
     const handleClick = async (e) =>{
         e.preventDefault();
+        setPost(formData);
         // await setPost(formData); //recieve location url
         // insertVideo()
-        console.log(formData);
+        // console.log(formData);
         
     }
 
@@ -60,7 +59,11 @@ export default function VideoUpload(){
               }}/>
             <button type="submit" onClick={handleClick}>Submit</button>
             </form>
-
+            <form action="http://localhost:3001/db/upload" method="post">
+            <input type="email" name="username"  id="exampleInputPassword1" placeholder="Password"/>
+            <button type="submit">Submit</button>
+                
+            </form>
         </div>
     )
 }

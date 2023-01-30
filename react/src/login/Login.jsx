@@ -3,7 +3,7 @@ import { useState } from "react"
 import Homepage from "../homepage/Homepage";
 import { useStore } from "../store";
 import VideoUpload from "../videoUpload/VideoUpload";
-
+import axios from 'axios';
 
 export default function Login(){
     const navigate = useNavigate();
@@ -14,11 +14,24 @@ export default function Login(){
         "password": ""
     });
     
+    const setPost = async (data) =>{
+        const res = await axios.post('http://localhost:3001/auth/login', data)
+        .then(function (response) {
+            if(response.data == "token_here"){
+                setAuth(response.data);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+    
+
     const handleClick = (e) =>{
         e.preventDefault();
         // console.log(loginData)
         if(loginData.password == "123" && loginData.email == "aamog@my.bcit.ca"){
-            setAuth("123")
+            setPost({"password": loginData.password, "email": loginData.email})
         }
     };
     
@@ -31,9 +44,9 @@ export default function Login(){
             <h1>Login Page</h1>
                 <form>
                     <label>Email: </label>
-                    <input onChange={(e)=>setLoginData({...loginData, email: e.target.value})}/>
+                    <input type='email' onChange={(e)=>setLoginData({...loginData, email: e.target.value})}/>
                     <label>Password: </label>
-                    <input onChange={(e)=>setLoginData({...loginData, password: e.target.value})}/>
+                    <input type='password' onChange={(e)=>setLoginData({...loginData, password: e.target.value})}/>
                     <button onClick={handleClick} type='submit'>Submit</button>
                 </form>
         </div>
