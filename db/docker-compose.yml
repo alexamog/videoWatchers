@@ -3,7 +3,7 @@ services:
     image: akuiack/3495as1-mysqldb
     command: mysqld --default-authentication-plugin=mysql_native_password
     env_file:
-      ./docker.env
+      - ./.env
     environment:
       ENV MYSQL_ROOT_PASSWORD: $ROOTPW
       ENV MYSQL_ROOT_HOST: '%'
