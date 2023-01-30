@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def upload_file():
-    file = request.files['file']
-    file.save("/videos/", file.filename)
+    file = request.form['videoFile']
+    file.save(f"/videos/{request.form['videoName']}")
     return 201
 
 if __name__ == "__main__":
