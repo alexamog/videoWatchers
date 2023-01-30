@@ -1,14 +1,15 @@
 version: "1.0"
 services:
   react-frontend:
-    build: .
+    build: ./react
     ports:
       - "5173:5173"
     networks:
       assign1-network:
         ipv4_address: 10.5.0.6
+  
   express-backend:
-    build: ../backend-server
+    build: ./backend-server
     ports:
       - "3001:3001"
     networks:
@@ -16,7 +17,7 @@ services:
         ipv4_address: 10.5.0.8
 
   file-system:
-    build: ../fs
+    build: ./fs
     ports:
       - "8080:8080"
     networks:
@@ -28,7 +29,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 10.5.0.0/16
+        - subnet: 10.5.0.0/24
           gateway: 10.5.0.1
 
 
