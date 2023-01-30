@@ -19,10 +19,10 @@ services:
   file-system:
     build: ./fs
     ports:
-      - "8080:8080"
-    networks:
-      assign1-network:
-        ipv4_address: 10.5.0.7
+      - "5000:5000"
+    # networks:
+    #   assign1-network:
+    #     ipv4_address: 10.5.0.7
 
 networks:
   assign1-network:
