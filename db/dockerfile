@@ -1,12 +1,7 @@
-FROM akuiack/3495as1-mysqldb:latest
+FROM mysql:latest
 
 ENV MYSQL_ROOT_PASSWORD videoapp3495
-ENV MYSQL_ROOT_HOST '%'
-ENV MYSQL_DATABASE: videoapp
-ENV MYSQL_USER videoapp-user
-ENV MYSQL_USER_HOST '%'
-ENV MYSQL_USER_PASSWORD videouser3495
 
-ADD data.sql /docker-entrypoint-initdb.d
-
+COPY ./data.sql /docker-entrypoint-initdb.d/
+CMD ["mysqld", "--default-authentication-plugin=mysql_native_password"]
 EXPOSE 3306

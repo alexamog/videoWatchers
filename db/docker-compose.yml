@@ -1,6 +1,6 @@
 services:
   db:
-    image: akuiack/3495as1-mysqldb
+    image: mysql:latest
     command: mysqld --default-authentication-plugin=mysql_native_password
     env_file:
       - ./.env
@@ -16,4 +16,5 @@ services:
     restart: always
     volumes:
       - ./db:/var/lib/mysql
+      - ./data.sql /docker-entrypoint-initdb.d/
     
