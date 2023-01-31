@@ -1,4 +1,4 @@
-version: "1.0"
+version: "3"
 services:
   react-frontend:
     build: ./react
@@ -23,7 +23,7 @@ services:
     # networks:
     #   assign1-network:
     #     ipv4_address: 10.5.0.7
-  db:
+  mysql:
     image: mysql:latest
     build: ./db
     command: mysqld --default-authentication-plugin=mysql_native_password
@@ -32,15 +32,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: $ROOTPW
       MYSQL_ROOT_HOST: '%'
-      MYSQL_DATABASE: $APPDB
-      MYSQL_USER: $DBUSER
-      MYSQL_USER_HOST: '%'
-      MYSQL_USER_PASSWORD: $DBUSERPW
     ports: 
       - "33061:3306"
     restart: always
-    volumes:
-      - ./db:/var/lib/mysql
+    volumes: 
+      - ./mysql:/var/lib/mysql
+      - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
+
 
 
 networks:
