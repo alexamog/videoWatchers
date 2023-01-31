@@ -23,6 +23,25 @@ services:
     # networks:
     #   assign1-network:
     #     ipv4_address: 10.5.0.7
+  db:
+    image: mysql:latest
+    build: ./db
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./.env
+    environment:
+      ENV MYSQL_ROOT_PASSWORD: $ROOTPW
+      ENV MYSQL_ROOT_HOST: '%'
+      ENV MYSQL_DATABASE: $APPDB
+      ENV MYSQL_USER: $DBUSER
+      ENV MYSQL_USER_HOST: '%'
+      ENV MYSQL_USER_PASSWORD: $DBUSERPW
+    ports: 
+      - "33061:3306"
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+
 
 networks:
   assign1-network:
