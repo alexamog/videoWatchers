@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 from flask_cors import CORS
 import json
 import os
@@ -10,22 +10,18 @@ CORS(app)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/', methods=['POST','GET'])
+
+@app.route('/', methods=['POST', 'GET'])
 def upload_file():
     if request.method == 'GET':
-        response = app.response_class(
-            response=json.dumps({"file_location": "c://dev/test"}),
-            status=200,
-            mimetype='application/json'
-        )
+        return send_file("test.mp4")
 
-        return response
-    
     if request.method == 'POST':
-        file = request.json['videoFile']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], request.json['videoName']))    
-        
-        return 201
+        file = request.files['videoFile']
+        file.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], f"{request.form['videoName']}.mp4"))
+        return request.status_code
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
