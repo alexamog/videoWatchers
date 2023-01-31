@@ -1,8 +1,8 @@
 import ReactPlayer from 'react-player';
-export default function VideoPlayer(){
+export default function VideoPlayer({videoURL}){
         return (
             <div className='player-wrapper'>
-                <ReactPlayer url={"http://localhost:5000/"}
+                <ReactPlayer url={videoURL}
    controls />
             </div>
         )
