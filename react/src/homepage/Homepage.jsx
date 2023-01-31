@@ -1,5 +1,6 @@
 import { useNavigate } from "@tanstack/react-location";
 import { useStore } from "../store";
+import VideoPlayer from "../videoPlayer/VideoPlayer";
 
 export default function Homepage(){
     const navigate = useNavigate();
@@ -9,9 +10,12 @@ export default function Homepage(){
         <div>
             <h1>Welcome to the homepage</h1>
             {token && 
-                <button onClick={()=>{
+               <div>
+                <VideoPlayer/>
+                 <button onClick={()=>{
                     navigate({ to: "/upload", replace: true });
                 }}>Upload a video!</button>
+                </div>
             }
         
             {!token &&
