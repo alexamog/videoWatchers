@@ -6,12 +6,13 @@ import Footer from "./footer/Footer";
 import Login from "./login/Login";
 import Register from "./register/Register";
 import { useStore } from "./store";
+import Navbar from "./navbar/Navbar";
 
 const location = new ReactLocation();
 
 export default function App() {
-  
-  const token = useStore((state)=> state.token);
+
+  const token = useStore((state) => state.token);
 
   const routes = [
     {
@@ -24,11 +25,11 @@ export default function App() {
     },
     {
       path: "login",
-      element: <Login/>
+      element: <Login />
     },
     {
       path: "register",
-      element: <Register/>
+      element: <Register />
     }
   ];
 
@@ -36,7 +37,8 @@ export default function App() {
   return (
     <>
       <Router routes={routes} location={location}>
-          <Outlet />
+        <Navbar />
+        <Outlet />
         <Footer />
       </Router>
     </>

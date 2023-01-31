@@ -10,8 +10,7 @@ export const useStore = create((set) => ({
   authentication: (authentication) =>
     set(
       produce((state) => {
-        state.token =
-          "123123";
+        authentication != null ? state.token = authentication : state.token = null;
       })
     ),
   setProfile: (profile) =>

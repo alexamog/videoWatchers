@@ -1,10 +1,11 @@
+import { useNavigate } from "@tanstack/react-location";
 import axios from "axios";
 import { useState } from "react";
 import { useStore } from "../store";
 import Login from "../login/Login";
 
-
 export default function VideoUpload() {
+  const navigate = useNavigate();
   const token = useStore((state) => state.token);
   const [formData, setFormData] = useState({
     "videoName": "untitled",
@@ -14,7 +15,6 @@ export default function VideoUpload() {
 
   const setPost = async () => {
     const bodyFormData = new FormData();
-    console.log(formData.videoFile);
     bodyFormData.append("videoName", formData.videoName);
     bodyFormData.append("tags", formData.tags);
     bodyFormData.append("videoFile", formData.videoFile);
@@ -29,15 +29,17 @@ export default function VideoUpload() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    setPost();
+    await setPost();
+    navigate({ to: "/", replace: true });
+
   }
 
-  if (!token) {
+  if (token != "token_here") {
     return <Login />
   }
   return (
     <div>
-      <h1>Upload a video here</h1>
+        <h1>Upload a video here</h1>
       <form>
         <label>Name: </label><input
           type="text"
