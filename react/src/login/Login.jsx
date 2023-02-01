@@ -17,7 +17,11 @@ export default function Login() {
             .then(function (response) {
                 console.log(response.data)
                 if (response.data.token == "token_here") {
-                    setProfile({ "firstName": response.data.profileInfo.firstName, "lastName": response.data.profileInfo.lastName });
+                    setProfile({ 
+                        "firstName": response.data.profileInfo.firstName, 
+                        "lastName": response.data.profileInfo.lastName,
+                        "username": response.data.profileInfo.username
+                    });
                     setAuth(response.data.token);
 
                 }

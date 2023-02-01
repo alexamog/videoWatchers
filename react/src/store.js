@@ -4,8 +4,9 @@ import produce from "immer";
 export const useStore = create((set) => ({
   token: null,
   profile: {
-    "first": "Alex",
-    "last": "Amog",
+    "first": "",
+    "last": "",
+    "username": ""
   },
   authentication: (authentication) =>
     set(
@@ -18,7 +19,8 @@ export const useStore = create((set) => ({
       produce((state) => {
         state.profile = {
           "first": profile.firstName,
-          "last": profile.lastName
+          "last": profile.lastName,
+          "username": profile.username
         }
       })
     ),
