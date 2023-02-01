@@ -14,13 +14,20 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/', methods=['POST', 'GET'])
 def upload_file():
     if request.method == 'GET':
-        return send_file("test.mp4")
+        title = request.args.get("title")
+        return send_file(f"{title}.mp4")
 
     if request.method == 'POST':
         file = request.files['videoFile']
         file.save(os.path.join(
             app.config['UPLOAD_FOLDER'], f"{request.form['videoName']}.mp4"))
-        return request.status_code
+
+        response = app.response_class(
+            status=200,
+            mimetype='application/json'
+        )
+
+    return response
 
 
 if __name__ == "__main__":

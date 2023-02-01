@@ -31,7 +31,7 @@ export default function VideoUpload() {
         "tags": formData.tags,
         "username": profile.username
       }
-      const appendDB = await axios.post("http://localhost:3001/db/upload",payload )
+      const appendDB = await axios.post("http://localhost:3001/db/upload", payload)
         .then((resp) => {
           console.log(resp)
         })
