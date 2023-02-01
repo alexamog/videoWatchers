@@ -1,21 +1,20 @@
 const mysql = require('mysql');
-const router = require('./routes/dbRoutes');
 
-
-const db = mysql.uploadVideo({
-  host     : 'localhost',
-  user     : 'videoapp-user',
-  password : 'videouser3495',
-  database : 'videoapp'
+const conn = mysql.createConnection({
+  host: 'localhost',
+  user: 'videouser',
+  password: 'videouser3495',
+  database: 'videoapp'
 });
 
 
-db.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected")
+conn.connect(function (err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log("Database connected.");
+  }
 });
 
-
-db.end();
-
-exports.databaseConnection = db;
+module.exports = conn;

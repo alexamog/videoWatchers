@@ -18,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("i am alive.");
+})
+
 app.use("/auth", auth)
 app.use("/db", dbRouter)
 
