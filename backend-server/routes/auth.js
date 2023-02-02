@@ -1,9 +1,8 @@
-import { register,login,logout } from "../controller/authCtrler.js"
+const authController = require("../controller/authCtrler.js");
 
 const express = require("express");
 const router = express.Router();
-const path = require('path');
-const conn = require("../db")
+
 
 // const mockupDB = [
 //     {
@@ -21,11 +20,6 @@ const conn = require("../db")
 //         "lastName": "Xu"
 //     },
 // ]
-router.post("/register", register);
-router.post("/login", login);
-router.post("/logout", logout);
-
-
-
+router.post("/login", authController.login);
 
 module.exports = router;

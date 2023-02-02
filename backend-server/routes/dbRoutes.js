@@ -1,11 +1,11 @@
 // const db = require("../db");
-import { uploadVideo, getVideos } from "../controller/dbCtrler.js";
+const dbController = require("../controller/dbCtrler.js");
 const express = require("express");
 const router = express.Router();
 const path = require('path');
 
-router.post("/upload", uploadVideo);
-router.get("/videos", getVideos);
+router.post("/upload", dbController.uploadVideo);
+router.get("/videos", dbController.getVideos);
 
 
 
