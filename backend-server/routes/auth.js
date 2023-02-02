@@ -1,7 +1,10 @@
+import { register,login,logout } from "../controller/authCtrler.js"
+
 const express = require("express");
 const router = express.Router();
 const path = require('path');
 const conn = require("../db")
+
 // const mockupDB = [
 //     {
 //         "username": "bleulenny",
@@ -18,7 +21,9 @@ const conn = require("../db")
 //         "lastName": "Xu"
 //     },
 // ]
-
+router.post("/register", register)
+router.post("/login", login)
+router.post("/logout", logout)
 router.post("/auth", (req, res) => {
     const email = req.body.email;
     const passwd = req.body.password;
