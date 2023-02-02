@@ -15,6 +15,7 @@ export default function Homepage() {
         return (<div>
             <VStack>
                 <h1>Welcome {profile.first} {profile.last} </h1>
+                <label>Filter videos: </label>
                 <input onChange={(e) => {
                     setFilter(e.target.value)
                 }} />
