@@ -19,7 +19,6 @@ const authController = {
                 return res.json("User has been created.")
             });
         });
-
     },
 
     login: (req, res) => {
@@ -34,9 +33,9 @@ const authController = {
             res.send({
                 "token": "token_here",
                 "profileInfo": {
-                    "firstName": result[0].user_username,
-                    "lastName": result[0].user_firstname,
-                    "username": result[0].user_lastName
+                    "firstName": result[0].user_firstName,
+                    "lastName": result[0].user_lastName,
+                    "username": result[0].user_username
                 }
             })
         })

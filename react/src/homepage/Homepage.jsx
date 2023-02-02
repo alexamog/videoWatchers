@@ -1,32 +1,21 @@
-import { init } from "ityped";
-import { useEffect, useRef } from "react";
-import { Stack, HStack, VStack, Heading } from '@chakra-ui/react'
+import { HStack, VStack } from '@chakra-ui/react'
+import Login from '../login/Login';
 import { useStore } from "../store";
 import VidPreview from "../vidPreview/VidPreview";
 import ButtonControl from "./ButtonControl";
 
 export default function Homepage() {
-    const title = useRef();
     const token = useStore((state) => state.token);
     const profile = useStore((state) => state.profile);
-
-    useEffect(() => {
-        init(title.current, {
-            showCursor: true,
-            backDelay: 250,
-            strings: ["For video watchers by video watchers", "こんにちは世界", "Docker Assignment 1"],
-        });
-    }, []);
     if (token == "token_here") {
+
         return (<div>
             <VStack>
-
                 <h1>Welcome {profile.first} {profile.last} </h1>
                 <ButtonControl />
             </VStack>
 
             <VStack>
-
                 <HStack>
                     <VidPreview
                         videoURL="https://www.youtube.com/watch?v=K3Qzzggn--s"
@@ -49,16 +38,6 @@ export default function Homepage() {
         </div>)
     }
     else {
-        return (<div>
-            <VStack>
-
-            <h1>Welcome to the homepage</h1>
-            <Heading as="h1" fontSize="3rem">
-                <span ref={title}></span>
-            </Heading>
-            </VStack>
-
-        </div>
-        )
+        return <Login />
     }
 }

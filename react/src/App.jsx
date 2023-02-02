@@ -7,6 +7,7 @@ import Login from "./login/Login";
 import Register from "./register/Register";
 import { useStore } from "./store";
 import Navbar from "./navbar/Navbar";
+import LandingPage from "./landingPage/LandingPage";
 
 const location = new ReactLocation();
 
@@ -17,6 +18,10 @@ export default function App() {
   const routes = [
     {
       path: "/",
+      element: <LandingPage />,
+    },
+    {
+      path: "homepage",
       element: <Homepage />,
     },
     {

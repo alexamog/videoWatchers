@@ -19,6 +19,9 @@ export default function Navbar() {
                             <Tab onClick={() => navigate({ to: "/", replace: true })}>
                                 Home{" "}
                             </Tab>
+                            <Tab onClick={() => navigate({ to: "/homepage", replace: true })}>
+                                Homepage{" "}
+                            </Tab>
                             <Tab onClick={() => navigate({ to: "/upload", replace: true })}>
                                 Upload
                             </Tab>
