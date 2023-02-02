@@ -38,6 +38,9 @@ services:
     volumes: 
       - ./mysql:/var/lib/mysql
       - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      assign1-network:
+        ipv4_address: 10.5.0.7
 
 
 
