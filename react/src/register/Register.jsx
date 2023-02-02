@@ -1,13 +1,30 @@
 import { useState } from "react"
+import axios from 'axios';
 
 export default function Register(){
     const [loginData, setLoginData] = useState({
         "email": "",
-        "password": ""
+        "password": "",
+        "username": "",
+        "firstname": "",
+        "lastname": ""
     });
-
+    const setPost = async (data) => {
+        const res = await axios.post('http://localhost:3001/auth/register', data)
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     const handleClick = (e) =>{
         e.preventDefault();
+        console.log(loginData)
+        setPost({
+            "password": loginData.password, "email": loginData.email, "username": loginData.username, "firstname": loginData.firstname, "lastname": loginData.lastname
+        })
+    
     };
     
     return(
@@ -18,6 +35,12 @@ export default function Register(){
                     <input onChange={(e)=>setLoginData({...loginData, email: e.target.value})}/>
                     <label>Password: </label>
                     <input onChange={(e)=>setLoginData({...loginData, password: e.target.value})}/>
+                    <label>Username: </label>
+                    <input onChange={(e)=>setLoginData({...loginData, username: e.target.value})}/>
+                    <label>First Name: </label>
+                    <input onChange={(e)=>setLoginData({...loginData, firstname: e.target.value})}/>
+                    <label>Last Name: </label>
+                    <input onChange={(e)=>setLoginData({...loginData, lastname: e.target.value})}/>
                     <button onClick={handleClick} type='submit'>Submit</button>
                 </form>
         </div>
