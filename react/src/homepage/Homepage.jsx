@@ -11,7 +11,7 @@ export default function Homepage() {
     const profile = useStore((state) => state.profile);
     const [filter, setFilter] = useState("")
     if (token == "token_here") {
-
+        
         return (<div>
             <VStack>
                 <h1>Welcome {profile.first} {profile.last} </h1>

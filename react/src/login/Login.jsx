@@ -13,7 +13,6 @@ export default function Login() {
         "email": null,
         "password": null
     });
-
     const setPost = async (data) => {
         const res = await axios.post('http://localhost:3001/auth/login', data)
             .then(function (response) {
