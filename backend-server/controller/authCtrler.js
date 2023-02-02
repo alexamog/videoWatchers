@@ -1,4 +1,4 @@
-const conn = require("../db.js");
+const conn = require("../db");
 
 const authController = {
     register: (req, res) => {
@@ -22,7 +22,7 @@ const authController = {
 
     login: (req, res) => {
         //check user
-        const getUser = "SELECT * FROM videousers WHERE user_email = ? AND user_passowrd = ?";
+        const getUser = "SELECT * FROM videousers WHERE user_email = ? AND user_password = ?";
         const userEmail = req.body.email
         const userPW = req.body.password
         conn.query(getUser, [userEmail, userPW], (err, result) => {

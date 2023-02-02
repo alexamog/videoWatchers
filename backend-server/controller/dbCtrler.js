@@ -1,8 +1,9 @@
-const conn = require("../db");
+const conn = require("../db")
+
 
 const dbController = {
     uploadVideo: (req, res) => {
-
+        
         //does video with that title already exist?
         const findVideo = "SELECT * FROM videos WHERE video_title = ? AND video_owner = ?";
         const vidTitle = req.body.videoName;
