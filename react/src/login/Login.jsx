@@ -15,7 +15,6 @@ export default function Login() {
     const setPost = async (data) => {
         const res = await axios.post('http://localhost:3001/auth/login', data)
             .then(function (response) {
-                console.log(response.data)
                 if (response.data.token == "token_here") {
                     setProfile({ 
                         "firstName": response.data.profileInfo.firstName, 
@@ -33,7 +32,7 @@ export default function Login() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        setPost({ "password": loginData.password, "email": loginData.email })
+        setPost({...loginData })
 
     };
     if (token) {

@@ -1,8 +1,10 @@
 import { useNavigate } from "@tanstack/react-location";
 import { useState } from "react";
+import { useStore } from "../store";
 import VideoPlayer from "../videoPlayer/VideoPlayer";
 export default function ButtonControl() {
     const navigate = useNavigate();
+    const video = useStore((state) => state.currentVideo);
     const [videoPlayer, setVideoPlayer] = useState({
         currentState: true,
         text: ["Watch videos!", "Close video player"]
@@ -17,7 +19,7 @@ export default function ButtonControl() {
             {
                 videoPlayer.currentState &&
                 <div>
-                    <VideoPlayer videoURL={"https://www.youtube.com/watch?v=mbsmsi7l3r4"} />
+                    <VideoPlayer videoURL={video.videoURL} />
                 </div>
             }
         </div>

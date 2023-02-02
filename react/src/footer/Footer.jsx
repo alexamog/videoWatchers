@@ -5,7 +5,9 @@ export default function Footer() {
     <div
       id="footer"
       style={{
-        paddingBottom: "5rem",
+        clear: "both",
+        position: "relative",
+        height: "200px",
       }}
     >
       <VStack position="absolute" left="0" right="0" bottom="0">
