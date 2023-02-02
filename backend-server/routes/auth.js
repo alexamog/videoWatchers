@@ -21,61 +21,11 @@ const conn = require("../db")
 //         "lastName": "Xu"
 //     },
 // ]
-router.post("/register", register)
-router.post("/login", login)
-router.post("/logout", logout)
-router.post("/auth", (req, res) => {
-    const email = req.body.email;
-    const passwd = req.body.password;
-    console.log(req.body)
-    conn.query("SELECT user_firstName, user_lastName, user_username FROM videousers WHERE user_email == ? AND user_password == ?", [email, passwd], (err, result) => {
-        if (err) {
-            res.send("Error. User does not exist.")
-        }
-        console.log(result);
-        res.send(result);
-        // return res.send({
-        //     "token": "token_here",
-        //     "profileInfo": {
-        //         "firstName": acc.firstName,
-        //         "lastName": acc.lastName,
-        //         "username": acc.username
-        //     }
-        // });
-    })
-    // const sqlFind = "SELECT * FROM videousers WHERE 'User' = 'username' AND 'User_Password' = 'pass'"
-    // db.query(sqlFind, [username, pass], (err, res)=>{
-    //     if (err) throw err;
-    //         console.log("User And/Or Password not found.")
-    //     console.log("Login Sucessful.")
-    // })
-});
+router.post("/register", register);
+router.post("/login", login);
+router.post("/logout", logout);
 
 
-router.post("/login", (req, res) => {
-    const email = req.body.email;
-    const passwd = req.body.password;
-})
 
-//mock db login
-
-// router.post("/login", (req, res, next) => {
-//     console.log(req.body)
-//     const email = req.body.email;
-//     const passwd = req.body.password;
-//     console.log(req.body)
-//     mockupDB.filter((acc) => {
-//         if (acc.email == email && acc.password == passwd) {
-//             return res.send({
-//                 "token": "token_here",
-//                 "profileInfo": {
-//                     "firstName": acc.firstName,
-//                     "lastName": acc.lastName,
-//                     "username": acc.username
-//                 }
-//             });
-//         }
-//     })
-// });
 
 module.exports = router;
