@@ -9,6 +9,9 @@ services:
         ipv4_address: 10.5.0.6
   
   express-backend:
+    depends_on:
+      mysql:
+        condition: service_healthy
     build: ./backend-server
     ports:
       - "3001:3001"
@@ -24,25 +27,29 @@ services:
     #   assign1-network:
     #     ipv4_address: 10.5.0.7
   mysql:
-    image: mysql:latest
-    build: ./db
-    command: mysqld --default-authentication-plugin=mysql_native_password
-    env_file:
-      - .env
-    environment:
-      MYSQL_ROOT_PASSWORD: $ROOTPW
-      MYSQL_ROOT_HOST: '%'
-    ports: 
-      - "33061:3306"
-    restart: always
-    volumes: 
-      - ./mysql:/var/lib/mysql
-      - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
-    networks:
-      assign1-network:
-        ipv4_address: 10.5.0.7
+      image: mysql:latest
+      build: ./db
+      env_file:
+        - .env
+      environment:
+        MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+        MYSQL_ROOT_HOST: '%'
+      ports: 
+        - "3306:3306"
+      restart: always
+      volumes: 
+        - my-db:/var/lib/mysql
+        - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql:ro
+      healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 10
+      networks:
+        assign1-network:
+          ipv4_address: 10.5.0.7
 
-
+volumes:
+  my-db:
 
 networks:
   assign1-network:
