@@ -1,4 +1,5 @@
 import { HStack, VStack } from '@chakra-ui/react'
+import { useState } from 'react';
 import Login from '../login/Login';
 import { useStore } from "../store";
 import VidPreview from "../vidPreview/VidPreview";
@@ -6,35 +7,41 @@ import ButtonControl from "./ButtonControl";
 
 export default function Homepage() {
     const token = useStore((state) => state.token);
+    const videoArr = useStore((state) => state.currentVideoArray);
     const profile = useStore((state) => state.profile);
+    const [filter, setFilter] = useState("")
     if (token == "token_here") {
 
         return (<div>
             <VStack>
                 <h1>Welcome {profile.first} {profile.last} </h1>
+                <input onChange={(e) => {
+                    setFilter(e.target.value)
+                }} />
                 <ButtonControl />
             </VStack>
-
             <VStack>
                 <HStack>
-                    <VidPreview
-                        videoURL="https://www.youtube.com/watch?v=K3Qzzggn--s"
-                        videoPicture="https://i.ytimg.com/vi/K3Qzzggn--s/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAoxDsaFGEv0_Tx0xDDNKCdhwd2ww"
-                        videoTitle={"Joji - Slow Dancing in the dark M/V"}
-                    />
-                    <VidPreview
-                        videoURL="https://www.youtube.com/watch?v=-yR1IBtixHY"
-                        videoPicture="https://i.ytimg.com/vi/-yR1IBtixHY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDx_m4okoCo-zK3CzJ68tAp3p9H9g"
-                        videoTitle={"Atarashi Gakko - オトナブルー "}
-                    />
-                    <VidPreview
-                        videoURL="https://www.youtube.com/watch?v=aeqnEJpPZVY"
-                        videoPicture="https://i.ytimg.com/vi/aeqnEJpPZVY/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhyIEsoOzAP&rs=AOn4CLDEKAMYOoCylz2iPVY1kjfKHAsqEg"
-                        videoTitle={"TaehaTypes - Fjell keyboard"}
-                    />
+                    {filter == "" && videoArr.map((video, idx) => {
+                        return (
+                            <VidPreview
+                                key={idx}
+                                videoPicture={video.videoPicture}
+                                videoURL={video.videoURL}
+                                videoTitle={video.videoTitle}
+                            />
+                        )
+                    })}
+                    {!filter == "" && videoArr.filter(video => video.videoTitle.toLowerCase().includes(filter.toLowerCase())|| video.videoTitle.toLowerCase().startsWith(filter.toLowerCase())).map(video => (
+                        <VidPreview
+                        key={video.videoURL}
+                            videoPicture={video.videoPicture}
+                            videoURL={video.videoURL}
+                            videoTitle={video.videoTitle}
+                        />
+                    ))}
                 </HStack>
             </VStack>
-
         </div>)
     }
     else {

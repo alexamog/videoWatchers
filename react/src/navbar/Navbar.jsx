@@ -27,7 +27,7 @@ export default function Navbar() {
                             </Tab>
                             <Tab onClick={() => {
                                 setAuth(null);
-                                navigate({ to: "/login", replace: true });
+                                navigate({ to: "/", replace: true });
                             }}>
                                 Logout
                             </Tab>

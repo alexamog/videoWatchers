@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "@tanstack/react-location";
 import Homepage from "../homepage/Homepage";
 import { useStore } from "../store";
 import axios from 'axios';
 
 export default function Login() {
     const token = useStore((state) => state.token);
+    const navigate = useNavigate();
     const setAuth = useStore((store) => store.authentication);
     const setProfile = useStore((store) => store.setProfile);
     const [loginData, setLoginData] = useState({
@@ -31,6 +33,7 @@ export default function Login() {
     const handleClick = (e) => {
         e.preventDefault();
         setPost({...loginData })
+        navigate({ to: "/homepage", replace: true })
 
     };
     if (token) {

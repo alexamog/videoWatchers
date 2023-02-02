@@ -8,12 +8,12 @@ export default function LandingPage(){
         init(title.current, {
             showCursor: true,
             backDelay: 250,
-            strings: ["For video watchers by video watchers", "こんにちは世界"],
+            strings: ["Group 8!","Hello World", "こんにちは世界"],
         });
     }, []);
     return (<div>
         <VStack>
-        <h1>Welcome to the homepage</h1>
+        <h1>VideoWatchers</h1>
         <Heading as="h1" fontSize="3rem">
             <span ref={title}></span>
         </Heading>
