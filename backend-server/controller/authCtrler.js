@@ -22,15 +22,22 @@ const authController = {
 
     login: (req, res) => {
         //check user
-        const getUser = "SELECT * FROM videousers WHERE user_email = ? AND user_password = ?";
-        const userEmail = req.body.email
-        const userPW = req.body.password
+        const getUser = "SELECT user_username, user_firstName, user_lastName FROM videousers WHERE user_email = ? AND user_password = ?";
+        const userEmail = req.body.email;
+        const userPW = req.body.password;
         conn.query(getUser, [userEmail, userPW], (err, result) => {
-            if (err) return res.json(err);
-            if (result.length === 0) return res.json("User not found.");
-            //check password
-            if (res.body.password !== result[0].user_password) return res.json("Email or Password are incorrect.");
-        });
+            if (err) {
+                res.send(err);
+            }
+            res.send({
+                "token": "token_here",
+                "profileInfo": {
+                    "firstName": result[0].user_username,
+                    "lastName": result[0].user_firstname,
+                    "username": result[0].user_lastName
+                }
+            })
+        })
     }
 };
 
