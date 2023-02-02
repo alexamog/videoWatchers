@@ -10,6 +10,8 @@ export default function VidPreview({ videoPicture, videoURL, videoTitle }) {
         <div>
             <p>{videoTitle}</p>
             <img src={videoPicture}
+            height="200px"
+            width="320px"
                 onClick={()=>setVideo({...video_info})}
             />
         </div>
