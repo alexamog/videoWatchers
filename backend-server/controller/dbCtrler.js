@@ -1,7 +1,43 @@
+import conn from "../db";
+
 export const uploadVideo = (req,res)=>{
 
+    //does video with that title already exist?
+    const findVideo = "SELECT * FROM videos WHERE video_title = ? AND video_owner = ?";
+    const vidTitle = req.body.videoName;
+    const vidUser = req.body.username;
+    conn.query(findVideo, [vidTitle,vidUser], (err, result)=>{
+        if (err) return res.json(err);
+        if (result.length !== 0) return res.json("Video by that name already exists from this user.");
+    });
+
+    //upload video
+    const insertVideo = "INSERT INTO videos(`video_title`, `video_Path`, `video_owner`) VALUES (?)";
+    const videoValues = [req.body.videoName, req.body.videoFile, req.body.username];
+    conn.query(insertVideo, [videoValues], (err, result)=>{
+        if (err) return res.json(err);
+
+        return res.json("Video uploaded");
+    });
 };
 
 export const getVideos = (req,res)=>{
+    //pull all videos from database
+    const lookForVideos = "SELECT * FROM videos";
+    conn.query(lookForVideos, (err,result)=>{
+        if (err) return res.json(err);
+        return res.json(result);
+    });
+};
 
+export const getOneVideo = (req, res)=>{
+    //pull video file name from database
+    const findVideo = "SELECT * FROM videos WHERE video_title = ? AND video_owner = ?";
+    const vidTitle = req.body.videoName;
+    const vidUser = req.body.username;
+    conn.query(findVideo, [vidTitle,vidUser], (err, result)=>{
+        if (err) return res.json(err);
+        if (result.length === 0) return res.json("Video no longer exists.");
+        return result[0].video_Path;
+    });
 };
