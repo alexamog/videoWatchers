@@ -1,13 +1,12 @@
 import { Router, Outlet, ReactLocation } from "@tanstack/react-location";
 import './App.css';
-import VideoUpload from "./videoUpload/VideoUpload";
 import Homepage from "./homepage/Homepage";
 import Footer from "./footer/Footer";
-import Login from "./login/Login";
-import Register from "./register/Register";
 import { useStore } from "./store";
 import Navbar from "./navbar/Navbar";
 import LandingPage from "./landingPage/LandingPage";
+import Login from "./login/Login";
+import Register from "./register/Register"; 
 
 const location = new ReactLocation();
 
@@ -21,16 +20,16 @@ export default function App() {
       element: <LandingPage />,
     },
     {
-      path: "upload",
-      element: <VideoUpload />,
-    },
-    {
       path: "login",
-      element: <Login />
+      element: <Login />,
     },
     {
       path: "register",
-      element: <Register />
+      element: <Register />,
+    },
+    {
+      path: "homepage",
+      element: <Homepage />,
     }
   ];
 

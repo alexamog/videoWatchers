@@ -16,18 +16,14 @@ export default function Navbar() {
                 <HStack as="nav">
                     <Tabs variant="soft-rounded" colorScheme="blue">
                         <TabList>
-                            <Tab onClick={() => navigate({ to: "/", replace: true })}>
-                                Home{" "}
+                            <Tab onClick={() => navigate({ to: "/homepage", replace: true })}>
+                                Homepage{" "}
                             </Tab>
-                            <a href="http://localhost:5174/">
+                            <a href="http://localhost:5173/upload">
                             <Tab>
-                                Watch Videos{" "}
+                                Upload{" "}
                             </Tab>
                             </a>
-
-                            <Tab onClick={() => navigate({ to: "/upload", replace: true })}>
-                                Upload
-                            </Tab>
                             <Tab onClick={() => {
                                 setAuth(null);
                                 navigate({ to: "/", replace: true });
