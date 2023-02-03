@@ -1,7 +1,9 @@
 import { useState } from "react"
 import axios from 'axios';
+import { useNavigate } from "@tanstack/react-location";
 
 export default function Register(){
+    const navigate = useNavigate();
     const [loginData, setLoginData] = useState({
         "email": "",
         "password": "",
@@ -24,6 +26,7 @@ export default function Register(){
         setPost({
             "password": loginData.password, "email": loginData.email, "username": loginData.username, "firstname": loginData.firstname, "lastname": loginData.lastname
         })
+        navigate({ to: "/login", replace: true })
     
     };
     
