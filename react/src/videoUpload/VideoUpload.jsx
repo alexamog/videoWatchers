@@ -18,6 +18,7 @@ export default function VideoUpload() {
     const bodyFormData = new FormData();
     bodyFormData.append("videoName", formData.videoName);
     bodyFormData.append("videoFile", formData.videoFile);
+    console.log(FormData);
     const res = await axios.post("http://localhost:5000/", bodyFormData)
       .then((resp) => {
         return resp.status;
@@ -28,6 +29,7 @@ export default function VideoUpload() {
     if (res == 200) {
       const payload = {
         "videoName": formData.videoName,
+        "videoFile": formData.videoFile.name,
         "tags": formData.tags,
         "username": profile.username
       }
@@ -43,7 +45,9 @@ export default function VideoUpload() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    await setPost();
+    await setPost({
+      "videoName": formData.videoName, "videoFile": formData.videoFile.name, "username": profile.username
+    });
     navigate({ to: "/", replace: true });
 
   }
