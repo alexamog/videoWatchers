@@ -2,7 +2,7 @@ import create from "zustand";
 import produce from "immer";
 
 export const useStore = create((set) => ({
-  token: "token_here",
+  token: null,
   profile: {
     "first": "Developer mode",
     "last": "on",

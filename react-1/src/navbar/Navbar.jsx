@@ -19,9 +19,11 @@ export default function Navbar() {
                             <Tab onClick={() => navigate({ to: "/homepage", replace: true })}>
                                 Homepage{" "}
                             </Tab>
-                            <Tab onClick={() => navigate({ to: "http://localhost:5173/upload", replace: true })}>
-                                Upload
+                            <a href="http://localhost:5173/upload">
+                            <Tab>
+                                Upload{" "}
                             </Tab>
+                            </a>
                             <Tab onClick={() => {
                                 setAuth(null);
                                 navigate({ to: "/", replace: true });

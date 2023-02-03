@@ -21,10 +21,6 @@ export default function App() {
       element: <LandingPage />,
     },
     {
-      path: "homepage",
-      element: <Homepage />,
-    },
-    {
       path: "upload",
       element: <VideoUpload />,
     },
