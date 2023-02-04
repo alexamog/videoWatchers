@@ -15,7 +15,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def upload_file():
     if request.method == 'GET':
         title = request.args.get("title")
-        return send_file(f"{title}.mp4")
+        return send_file(os.path.join(
+            app.config['UPLOAD_FOLDER'], f"{title}.mp4"))
 
     if request.method == 'POST':
         file = request.files['videoFile']
