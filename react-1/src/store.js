@@ -48,7 +48,9 @@ export const useStore = create((set) => ({
   addVideo: (video) =>
     set(
       produce((state) => {
-        state.currentVideoArray.append({
+
+        state.currentVideoArray.push(...state.currentVideoArray, {
+          
           "videoURL": video.url,
           "videoTitle": video.title,
           "videoPicture": video.picture,
