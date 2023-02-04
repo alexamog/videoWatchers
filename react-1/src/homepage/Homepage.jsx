@@ -24,7 +24,7 @@ export default function Homepage() {
             </VStack>
             <VStack>
                 <HStack>
-                    <SimpleGrid columns={4}>
+                    <SimpleGrid columns={3} spacing={10}>
                     {filter == "" && videoArr.map((video, idx) => {
                         return (
                             <VidPreview

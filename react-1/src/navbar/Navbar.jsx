@@ -16,7 +16,7 @@ export default function Navbar() {
                 const myvid = {
                     "url": video.video_Path,
                     "title": video.video_title,
-                    "picture": "https://cdn.icon-icons.com/icons2/1713/PNG/512/iconfinder-videologoplayicon-3993847_112649.png"
+                    "picture": "https://i.imgur.com/UHPcMV1.png"
                 }
                 console.log(myvid)
                 setAddVideo(myvid);
