@@ -1,4 +1,4 @@
-import { HStack, VStack } from '@chakra-ui/react'
+import { HStack, VStack, SimpleGrid} from '@chakra-ui/react'
 import { useState } from 'react';
 import Login from '../login/Login';
 import { useStore } from "../store";
@@ -24,6 +24,7 @@ export default function Homepage() {
             </VStack>
             <VStack>
                 <HStack>
+                    <SimpleGrid columns={4}>
                     {filter == "" && videoArr.map((video, idx) => {
                         return (
                             <VidPreview
@@ -42,6 +43,7 @@ export default function Homepage() {
                             videoTitle={video.videoTitle}
                         />
                     ))}
+                    </SimpleGrid>
                 </HStack>
             </VStack>
         </div>)
