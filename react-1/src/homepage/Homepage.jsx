@@ -9,34 +9,12 @@ import axios from 'axios';
 export default function Homepage() {
     const token = useStore((state) => state.token);
     const videoArr = useStore((state) => state.currentVideoArray);
-    const setAddVideo = useStore((store) => store.addVideo);
     const profile = useStore((state) => state.profile);
     const [filter, setFilter] = useState("")
 
-    const getVideos = async () => {
-        const res = await axios.get('http://localhost:3001/db/videos')
-        .then(function (response) {
-            console.log(response.data);
-            for(let video of response.data){
-                const myvid = {
-                    "url": video.video_Path,
-                    "title": video.video_title,
-                    "picture": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Pornhub-logo.svg/2560px-Pornhub-logo.svg.png"
-                }
-                console.log(myvid)
-                setAddVideo(myvid);
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    }
-
     if (token == "token_here") {
-        
         return (<div>
             <VStack>
-                <button onClick={()=> {getVideos(); console.log(videoArr)}}>Get Videos</button>
                 <h1>Welcome {profile.first} {profile.last} </h1>
                 <label>Filter videos: </label>
                 <input onChange={(e) => {

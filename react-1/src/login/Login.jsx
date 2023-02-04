@@ -29,11 +29,11 @@ export default function Login() {
                 console.log(error);
             });
     }
-
     const handleClick = (e) => {
         e.preventDefault();
         setPost({...loginData })
-        navigate({ to: "/homepage", replace: true })
+        navigate({ to: "/", replace: true })
+        
 
     };
     if (token) {
