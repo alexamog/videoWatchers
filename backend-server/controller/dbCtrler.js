@@ -15,7 +15,7 @@ const dbController = {
 
         //upload video
             const insertVideo = "INSERT INTO videos(`video_title`, `video_Path`, `video_owner`) VALUES (?)";
-            const videoValues = [req.body.videoName, req.body.videoFile, req.body.username];
+            const videoValues = [req.body.videoName, `http://localhost:5000/?title=${req.body.videoName}`, req.body.username];
             conn.query(insertVideo, [videoValues], (err, result) => {
                 if (err) return res.status(200).json(err);
 
@@ -26,7 +26,8 @@ const dbController = {
 
     getVideos: (req, res) => {
         //pull all videos from database
-        const lookForVideos = "SELECT * FROM videos";
+        const lookForVideos = "SELECT video_title, video_Path FROM videos";
+        
         conn.query(lookForVideos, (err, result) => {
             if (err) return res.json(err);
             return res.json(result);
@@ -35,7 +36,7 @@ const dbController = {
 
     getOneVideo: (req, res) => {
         //pull video file name from database
-        const findVideo = "SELECT video_title, video_owner FROM videos WHERE video_title = ? AND video_owner = ?";
+        const findVideo = "SELECT video_title, video_Path FROM videos WHERE video_title = ? AND video_owner = ?";
         const vidTitle = req.body.videoName;
         const vidUser = req.body.username;
         conn.query(findVideo, [vidTitle, vidUser], (err, result) => {
