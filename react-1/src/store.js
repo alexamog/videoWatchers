@@ -9,9 +9,9 @@ export const useStore = create((set) => ({
     "username": ""
   },
   currentVideo: {
-    "videoURL": "https://www.youtube.com/watch?v=fTHSmKd8OvY",
-    "videoTitle": "BCIT Campus Tour",
-    "videoPicture": "https://i.ytimg.com/vi/fTHSmKd8OvY/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC_ML7D4zEM0m_8mDcYfyoNtJwAhQ",
+    "videoURL": "https://www.youtube.com/watch?v=hWFDujYzvbI",
+    "videoTitle": "JomaTech - Day in a life of a FAANG SWE",
+    "videoPicture": "https://i.ytimg.com/vi/hWFDujYzvbI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD1qibHWhuWlEURP2phi8snHEehbg",
   },
 
   currentVideoArray: [{
