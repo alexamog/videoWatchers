@@ -31,6 +31,8 @@ services:
     build: ./fs
     ports:
       - "5000:5000"
+    volumes:
+    - videos:/videos
     # networks:
     #   assign1-network:
     #     ipv4_address: 10.5.0.7
@@ -58,6 +60,7 @@ services:
 
 volumes:
   my-db:
+  videos:
 
 networks:
   assign1-network:
