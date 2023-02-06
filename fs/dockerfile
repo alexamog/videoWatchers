@@ -2,9 +2,9 @@ FROM python:latest
 
 RUN mkdir videos
 COPY app.py ./
-EXPOSE 8080
 EXPOSE 5000
 
 RUN pip install flask
 RUN pip install -U flask-cors
-CMD ["flask", "run","--host=0.0.0.0"]
+
+CMD ["flask", "run", "--host", "0.0.0.0"]
