@@ -25,6 +25,10 @@ export default function App() {
       element: <VideoUpload />,
     },
     {
+      path: "homepage",
+      element: <Homepage />,
+    },
+    {
       path: "login",
       element: <Login />
     },

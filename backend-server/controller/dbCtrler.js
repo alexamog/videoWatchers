@@ -3,7 +3,7 @@ const conn = require("../db")
 
 const dbController = {
     uploadVideo: (req, res) => {
-        
+
         //does video with that title already exist?
         const findVideo = "SELECT video_title, video_owner FROM videos WHERE video_title = ? AND video_owner = ?";
         const vidTitle = req.body.videoName;
@@ -11,9 +11,9 @@ const dbController = {
         conn.query(findVideo, [vidTitle, vidUser], (err, result) => {
             if (err) return res.json(err);
             if (result.length > 0) return res.status(400).json("Video by that name already exists from this user.");
-            
 
-        //upload video
+
+            //upload video
             const insertVideo = "INSERT INTO videos(`video_title`, `video_Path`, `video_owner`) VALUES (?)";
             const videoValues = [req.body.videoName, `http://localhost:5000/?title=${req.body.videoName}`, req.body.username];
             conn.query(insertVideo, [videoValues], (err, result) => {
@@ -26,10 +26,11 @@ const dbController = {
 
     getVideos: (req, res) => {
         //pull all videos from database
-        const lookForVideos = "SELECT video_title, video_Path FROM videos";
-        
+        const lookForVideos = "SELECT video_title, video_path, video_image FROM videos";
+
         conn.query(lookForVideos, (err, result) => {
             if (err) return res.json(err);
+            console.log(result)
             return res.json(result);
         });
     },

@@ -1,10 +1,24 @@
 import { HStack, Tabs, Tab, TabList } from "@chakra-ui/react";
 import { useNavigate } from "@tanstack/react-location";
 import { useStore } from "../store";
+import axios from 'axios'
 
 export default function Navbar() {
     const token = useStore((state) => state.token);
     const setAuth = useStore((store) => store.authentication);
+    const setVideos = useStore((store) => store.updateVideos);
+
+    const updateVideoState = async () => {
+        await axios.get('http://localhost:3001/db/videos')
+            .then((response) => {
+                console.log(response.data)
+                setVideos(response.data)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     const navigate = useNavigate();
     if (token == "token_here") {
         return (
@@ -19,12 +33,12 @@ export default function Navbar() {
                             <Tab onClick={() => navigate({ to: "/", replace: true })}>
                                 Home{" "}
                             </Tab>
-                            <a href="http://localhost:5174/">
-                            <Tab>
-                                Watch Videos{" "}
+                            <Tab onClick={() => {
+                                updateVideoState()
+                                navigate({ to: "/homepage", replace: true })
+                            }}>
+                                Homepage{" "}
                             </Tab>
-                            </a>
-
                             <Tab onClick={() => navigate({ to: "/upload", replace: true })}>
                                 Upload
                             </Tab>
@@ -37,7 +51,7 @@ export default function Navbar() {
                         </TabList>
                     </Tabs>
                 </HStack>
-            </div>
+            </div >
         );
     }
     return (

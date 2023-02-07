@@ -8,11 +8,24 @@ export default function VideoUpload() {
   const navigate = useNavigate();
   const token = useStore((state) => state.token);
   const profile = useStore((state) => state.profile);
+  const setVideos = useStore((store) => store.updateVideos);
+
   const [formData, setFormData] = useState({
     "videoName": "untitled",
     "tags": [],
     "videoFile": null,
   });
+
+  const updateVideoState = async () => {
+    await axios.get('http://localhost:3001/db/videos')
+        .then((response) => {
+            console.log(response.data)
+            setVideos(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
 
   const setPost = async () => {
     const bodyFormData = new FormData();
@@ -33,7 +46,7 @@ export default function VideoUpload() {
         "tags": formData.tags,
         "username": profile.username
       }
-      const appendDB = await axios.post("http://localhost:3001/db/upload", payload)
+      await axios.post("http://localhost:3001/db/upload", payload)
         .then((resp) => {
           console.log(resp)
         })
@@ -45,10 +58,9 @@ export default function VideoUpload() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    await setPost({
-      "videoName": formData.videoName, "videoFile": formData.videoFile.name, "username": profile.username
-    });
-    navigate({ to: "/", replace: true });
+    await setPost({ "videoName": formData.videoName, "videoFile": formData.videoFile.name, "username": profile.username });
+    await updateVideoState()
+    navigate({ to: "/homepage", replace: true });
 
   }
 
