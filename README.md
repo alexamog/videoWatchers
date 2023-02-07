@@ -1,6 +1,6 @@
 # VideoWatchers
 
-## A scalable and efficient Web application that allows multiple users to concurrently retrieve and view videos in real-time, providing an engaging and seamless video streaming experience. 
+A scalable and efficient Web application that allows multiple users to concurrently retrieve and view videos in real-time, providing an engaging and seamless video streaming experience. 
 
 
 ### Getting started
