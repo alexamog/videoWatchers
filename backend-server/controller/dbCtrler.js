@@ -30,7 +30,6 @@ const dbController = {
 
         conn.query(lookForVideos, (err, result) => {
             if (err) return res.json(err);
-            console.log(result)
             return res.json(result);
         });
     },

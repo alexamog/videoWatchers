@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "@tanstack/react-location";
-import VideoUpload from "../videoUpload/VideoUpload"
 import { useStore } from "../store";
+import HomePage from "../homepage/Homepage"
 import axios from 'axios';
 
 export default function Login() {
@@ -32,11 +32,11 @@ export default function Login() {
     const handleClick = (e) => {
         e.preventDefault();
         setPost({...loginData })
-        navigate({ to: "/upload", replace: true })
+        navigate({ to: "/homepage", replace: true })
 
     };
     if (token) {
-        return <VideoUpload />
+        return <HomePage />
     }
 
     return (
